@@ -4,40 +4,53 @@ import java.util.HashSet;
 
 public class Usuario {
 	protected String nome;
+	protected String login;
 	protected double dinheiro;
 	protected int x2p;
 	protected HashSet<Jogo> jogos;
-	
-	public Usuario(String nome) throws Exception {
-	verificaNomeInvalido(nome);
-	this.nome = nome;
-	this.jogos = new HashSet<>();
+
+	public Usuario(String nome, String login) throws Exception {
+		verificaNomeInvalido(nome, login);
+		this.nome = nome;
+		this.login = login;
+		this.jogos = new HashSet<>();
 	}
-	
-	public boolean addJogo(Jogo jogo){
-		if(!jogos.contains(jogo)){
-			setDinheiro(jogo.getPreco());
-			jogos.add(jogo);
-			return true;
+
+	public void registraJogada(String nomeJogo, int scoreJogada, boolean zerou) {
+		for (Jogo jogo : jogos) {
+			if (nomeJogo.equalsIgnoreCase(jogo.getNome())) {
+				jogo.registraJogada(scoreJogada, zerou);
+			}
+		}
+	}
+
+	public boolean addJogo(Jogo jogo) {
+		if (!jogos.contains(jogo)) {
+			if (getDinheiro() >= jogo.getPreco()) {
+				setDinheiro(jogo.getPreco());
+				jogos.add(jogo);
+				return true;
+			}
+			return false;
 		}
 		return false;
 	}
-	public boolean removeJogo(Jogo jogo){
-		if(!jogos.contains(jogo)){
+
+	public boolean removeJogo(Jogo jogo) {
+		if (!jogos.contains(jogo)) {
 			jogos.remove(jogo);
 			return true;
 		}
 		return false;
 	}
-	
-	public int totalCompra(){
+
+	public int totalComprado() {
 		int total = 0;
 		for (Jogo jogo : jogos) {
 			total += (int) jogo.getPreco();
 		}
-		return  total;
+		return total;
 	}
-	
 
 	public String getNome() {
 		return nome;
@@ -59,13 +72,12 @@ public class Usuario {
 		return jogos;
 	}
 
-	public void setJogos(HashSet<Jogo> jogos) {
-		this.jogos = jogos;
-	}
-
-	private void verificaNomeInvalido(String nome) throws Exception {
-		if(nome == null || nome.trim().equals("")){
+	private void verificaNomeInvalido(String nome, String login) throws Exception {
+		if (nome == null || nome.trim().equals("")) {
 			throw new Exception("Nome nao pode ser nulo ou vazio");
+		}
+		if (login == null || login.trim().equals("")) {
+			throw new Exception("Login nao pode ser nulo ou vazio");
 		}
 	}
 }

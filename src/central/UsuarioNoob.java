@@ -22,12 +22,6 @@ public class UsuarioNoob extends Usuario{
 		x2p += totalCompra() * x2pNoob;
 	}
 	
-	public void registraJogada(String nomeJogo, int scoreJogada, boolean zerou){
-		for (Jogo jogo : jogos) {
-			if(nomeJogo.equalsIgnoreCase(jogo.getNome())){
-				jogo.registraJogada(scoreJogada, zerou);
-			}
-		}
-	}
+	
 
 }

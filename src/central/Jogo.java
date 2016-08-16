@@ -16,8 +16,9 @@ public class Jogo {
 	verificaCraicaoInvalida(nome, preco);
 	this.nome = nome;
 	this.preco = preco;
-	
+	jogabilidade = new HashSet<>();
 	}
+	
 	
 	public void registraJogada(int scoreJogada, boolean zerou){
 		setQntJogadas();
@@ -28,12 +29,12 @@ public class Jogo {
 			setQntZeradas();
 		}
 	}
-	public void addJogabilidade(Jogabilidade jogabiliade){
-		jogabilidade.add(jogabiliade);
+	public void addJogabilidade(Jogabilidade tipoJogabiliade){
+		jogabilidade.add(tipoJogabiliade);
 	}
 	
-	public void removeJogabilidade(Jogabilidade jogabiliade){
-		jogabilidade.remove(jogabiliade);
+	public void removeJogabilidade(Jogabilidade tipoJogabiliade){
+		jogabilidade.remove(tipoJogabiliade);
 	}
 	
 

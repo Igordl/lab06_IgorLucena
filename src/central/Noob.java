@@ -1,9 +1,9 @@
 package central;
 
-public class UsuarioNoob extends Usuario{
+public class Noob extends Usuario{
 
-	public UsuarioNoob(String nome) throws Exception {
-		super(nome);
+	public Noob(String nome, String login) throws Exception {
+		super(nome, login);
 		
 	}
 	public boolean addJogo(Jogo jogo){
@@ -19,7 +19,7 @@ public class UsuarioNoob extends Usuario{
 	
 	public void setX2p(){
 		int x2pNoob = 10;
-		x2p += totalCompra() * x2pNoob;
+		x2p += totalComprado() * x2pNoob;
 	}
 	
 	

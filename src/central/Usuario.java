@@ -35,6 +35,32 @@ public class Usuario {
 		}
 		return false;
 	}
+	
+	public boolean addJogo(String nome, double preco , String tipo) throws Exception {
+		Jogo jogo = factoryJogo(nome, preco, tipo);
+		if (!jogos.contains(jogo)) {
+			if (getDinheiro() >= jogo.getPreco()) {
+				setDinheiro(jogo.getPreco());
+				jogos.add(jogo);
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
+	
+	public Jogo factoryJogo(String nome, double preco, String tipo) throws Exception {
+
+		if (tipo.equalsIgnoreCase("RPG")) {
+			return new RPG(nome, preco);
+		} else if (tipo.equalsIgnoreCase("Luta")) {
+			return new Luta(nome, preco);
+		} else if (tipo.equalsIgnoreCase("Plantaforma")) {
+			return new Plantaforma(nome, preco);
+		}
+		return null;
+	}
+	
 
 	public boolean removeJogo(Jogo jogo) {
 		if (!jogos.contains(jogo)) {
@@ -64,10 +90,12 @@ public class Usuario {
 		return dinheiro;
 	}
 
-	public void setDinheiro(double precoJogo) {
+	public void compraJogo(double precoJogo) {
 		this.dinheiro -= precoJogo;
 	}
-
+	public void setDinheiro(double valor) {
+		this.dinheiro += valor;
+	}
 	public HashSet<Jogo> getJogos() {
 		return jogos;
 	}

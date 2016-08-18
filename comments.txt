@@ -3,3 +3,5 @@
 - Todos os atributos protected nas superClasses? Acho que não necessita, você usa get e sets tbm, mesmo com herança isso é válido, protected é algo que quase ninguém faz uso, afinal, as classes derivadas (filhas) também possuem acesso direto aos métodos públicos da classe Mãe. 
 
 - Separe melhor o "src" em outros packages, olha a quantidade de classes que já tem, dificulta um pouco até, uma ideia pode ser: usuario, loja, jogo. três packages que facilitariam muito e deixaria bem mais organizado.
+
+- Preste atenção, nome de pacote é com letra minuscula "usuario" e nao "Usuario" 

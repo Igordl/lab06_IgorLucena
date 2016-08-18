@@ -1,4 +1,4 @@
-package central;
+package Jogo;
 
 public class RPG extends Jogo {
 

@@ -1,5 +1,5 @@
 
-package central;
+package Jogo;
 
 import java.util.HashSet;
 
@@ -13,7 +13,7 @@ public class Jogo {
 	protected HashSet<Jogabilidade> jogabilidade;
 	
 	public Jogo(String nome, double preco) throws Exception {
-	verificaCraicaoInvalida(nome, preco);
+	verificaCricaoInvalida(nome, preco);
 	this.nome = nome;
 	this.preco = preco;
 	jogabilidade = new HashSet<>();
@@ -29,6 +29,8 @@ public class Jogo {
 			setQntZeradas();
 		}
 	}
+	
+	
 	public void addJogabilidade(Jogabilidade tipoJogabiliade){
 		jogabilidade.add(tipoJogabiliade);
 	}
@@ -80,7 +82,7 @@ public class Jogo {
 		this.qntZeradas += zerou;
 	}
 
-	private void verificaCraicaoInvalida(String nome, double preco) throws Exception {
+	private void verificaCricaoInvalida(String nome, double preco) throws Exception {
 		if(nome == null || nome.trim().equals("")){
 			throw new Exception("Nome nao pode ser nulo ou vazio");
 		}

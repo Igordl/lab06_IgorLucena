@@ -1,19 +1,24 @@
-package central;
+package Usuario;
 
 import java.util.HashSet;
 
-public class Usuario {
+import Jogo.FactoryJogos;
+import Jogo.Jogo;
+
+public abstract class Usuario {
 	protected String nome;
 	protected String login;
 	protected double dinheiro;
 	protected int x2p;
 	protected HashSet<Jogo> jogos;
+	protected FactoryJogos factoryJogos;
 
 	public Usuario(String nome, String login) throws Exception {
 		verificaNomeInvalido(nome, login);
 		this.nome = nome;
 		this.login = login;
 		this.jogos = new HashSet<>();
+		this.factoryJogos = new FactoryJogos();
 	}
 
 	public void registraJogada(String nomeJogo, int scoreJogada, boolean zerou) {
@@ -24,42 +29,9 @@ public class Usuario {
 		}
 	}
 
-	public boolean addJogo(Jogo jogo) {
-		if (!jogos.contains(jogo)) {
-			if (getDinheiro() >= jogo.getPreco()) {
-				setDinheiro(jogo.getPreco());
-				jogos.add(jogo);
-				return true;
-			}
-			return false;
-		}
-		return false;
-	}
+	public abstract boolean addJogo(Jogo jogo);
 	
-	public boolean addJogo(String nome, double preco , String tipo) throws Exception {
-		Jogo jogo = factoryJogo(nome, preco, tipo);
-		if (!jogos.contains(jogo)) {
-			if (getDinheiro() >= jogo.getPreco()) {
-				setDinheiro(jogo.getPreco());
-				jogos.add(jogo);
-				return true;
-			}
-			return false;
-		}
-		return false;
-	}
-	
-	public Jogo factoryJogo(String nome, double preco, String tipo) throws Exception {
-
-		if (tipo.equalsIgnoreCase("RPG")) {
-			return new RPG(nome, preco);
-		} else if (tipo.equalsIgnoreCase("Luta")) {
-			return new Luta(nome, preco);
-		} else if (tipo.equalsIgnoreCase("Plantaforma")) {
-			return new Plantaforma(nome, preco);
-		}
-		return null;
-	}
+	public abstract boolean addJogo(String nome, double preco , String tipo) throws Exception ;
 	
 
 	public boolean removeJogo(Jogo jogo) {
@@ -70,13 +42,6 @@ public class Usuario {
 		return false;
 	}
 
-	public int totalComprado() {
-		int total = 0;
-		for (Jogo jogo : jogos) {
-			total += (int) jogo.getPreco();
-		}
-		return total;
-	}
 
 	public String getNome() {
 		return nome;
@@ -93,8 +58,11 @@ public class Usuario {
 	public void compraJogo(double precoJogo) {
 		this.dinheiro -= precoJogo;
 	}
-	public void setDinheiro(double valor) {
+	public void addDinheiro(double valor){
 		this.dinheiro += valor;
+	}
+	public void setDinheiro(double valor) {
+		this.dinheiro = valor;
 	}
 	public HashSet<Jogo> getJogos() {
 		return jogos;

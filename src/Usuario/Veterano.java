@@ -30,7 +30,7 @@ public class Veterano extends Usuario {
 			if (getDinheiro() >= jogo.getPreco()) {
 				double taxaDescontoVeterano = -0.2;
 				double desconto = jogo.getPreco() * taxaDescontoVeterano;
-				setDinheiro(jogo.getPreco() + desconto);
+				compraJogo(jogo.getPreco() + desconto);
 				jogos.add(jogo);
 				adicionaX2p(jogo.getPreco());
 				return true;

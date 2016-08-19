@@ -3,7 +3,7 @@ package Jogo;
 
 import java.util.HashSet;
 
-public class Jogo {
+public abstract class Jogo {
 	
 	protected String nome;
 	protected double preco;
@@ -20,15 +20,7 @@ public class Jogo {
 	}
 	
 	
-	public void registraJogada(int scoreJogada, boolean zerou){
-		setQntJogadas();
-		if(scoreJogada > this.getMaxScore()){
-			setMaxScore(scoreJogada);
-		}
-		if(zerou){
-			setQntZeradas();
-		}
-	}
+	public abstract int registraJogada(int scoreJogada, boolean zerou);
 	
 	
 	public void addJogabilidade(Jogabilidade tipoJogabiliade){

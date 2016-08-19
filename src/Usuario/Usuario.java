@@ -5,6 +5,7 @@ import java.util.HashSet;
 import Jogo.FactoryJogos;
 import Jogo.Jogo;
 
+
 public abstract class Usuario {
 	protected String nome;
 	protected String login;
@@ -12,6 +13,7 @@ public abstract class Usuario {
 	protected int x2p;
 	protected HashSet<Jogo> jogos;
 	protected FactoryJogos factoryJogos;
+	
 
 	public Usuario(String nome, String login) throws Exception {
 		verificaNomeInvalido(nome, login);
@@ -19,20 +21,22 @@ public abstract class Usuario {
 		this.login = login;
 		this.jogos = new HashSet<>();
 		this.factoryJogos = new FactoryJogos();
+		
 	}
 
 	public void registraJogada(String nomeJogo, int scoreJogada, boolean zerou) {
 		for (Jogo jogo : jogos) {
 			if (nomeJogo.equalsIgnoreCase(jogo.getNome())) {
-				jogo.registraJogada(scoreJogada, zerou);
+				int x2pJogada = jogo.registraJogada(scoreJogada, zerou);
+				addX2p(x2pJogada);
+
 			}
 		}
 	}
 
 	public abstract boolean addJogo(Jogo jogo);
-	
-	public abstract boolean addJogo(String nome, double preco , String tipo) throws Exception ;
-	
+
+	public abstract boolean addJogo(String nome, double preco, String tipo) throws Exception;
 
 	public boolean removeJogo(Jogo jogo) {
 		if (!jogos.contains(jogo)) {
@@ -41,7 +45,6 @@ public abstract class Usuario {
 		}
 		return false;
 	}
-
 
 	public String getNome() {
 		return nome;
@@ -55,15 +58,22 @@ public abstract class Usuario {
 		return dinheiro;
 	}
 
+	public void addX2p(int x2p) {
+		this.x2p += x2p;
+	}
+
 	public void compraJogo(double precoJogo) {
 		this.dinheiro -= precoJogo;
 	}
-	public void addDinheiro(double valor){
+
+	public void addDinheiro(double valor) {
 		this.dinheiro += valor;
 	}
+
 	public void setDinheiro(double valor) {
 		this.dinheiro = valor;
 	}
+
 	public HashSet<Jogo> getJogos() {
 		return jogos;
 	}

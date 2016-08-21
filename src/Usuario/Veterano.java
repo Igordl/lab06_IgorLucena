@@ -6,6 +6,7 @@ public class Veterano extends Usuario {
 
 	public Veterano(String nome, String login) throws Exception {
 		super(nome, login);
+		super.tipo = "Veterano";
 		super.x2p = 1000;
 
 	}

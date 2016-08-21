@@ -4,6 +4,7 @@ public class RPG extends Jogo {
 	
 	public RPG(String nome, double preco) throws Exception {
 		super(nome, preco);
+		super.tipo = "RPG";
 		
 	}
 	public int registraJogada(int scoreJogada, boolean zerou){

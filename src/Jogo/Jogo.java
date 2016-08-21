@@ -4,12 +4,13 @@ package Jogo;
 import java.util.HashSet;
 
 public abstract class Jogo {
-	
+	private final String FIM_DE_LINHA = System.lineSeparator();
 	protected String nome;
 	protected double preco;
 	protected int maxScore;
 	protected int qntJogadas;
 	protected int qntZeradas;
+	protected String tipo = null;
 	protected HashSet<Jogabilidade> jogabilidade;
 	
 	public Jogo(String nome, double preco) throws Exception {
@@ -73,6 +74,58 @@ public abstract class Jogo {
 		int zerou = 1;
 		this.qntZeradas += zerou;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
+
+
+	public HashSet<Jogabilidade> getJogabilidade() {
+		return jogabilidade;
+	}
+
+
+	public void setJogabilidade(HashSet<Jogabilidade> jogabilidade) {
+		this.jogabilidade = jogabilidade;
+	}
+
+	public String toString(){
+		String retorno = "+ " + getNome() +" - "+ getTipo();
+		retorno += FIM_DE_LINHA + "==> Jogou "+ getQntJogadas() + "vez(es)";
+		retorno += FIM_DE_LINHA + "==> Zerou "+ getQntZeradas() + "vez(es)";
+		retorno += FIM_DE_LINHA + "==> Maior score: " + getMaxScore();
+		return retorno;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((jogabilidade == null) ? 0 : jogabilidade.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Jogo){
+			Jogo outroObj = (Jogo) obj;
+			if(outroObj.getNome().equalsIgnoreCase(nome)){
+				if(outroObj.getJogabilidade().equals(jogabilidade)){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 
 	private void verificaCricaoInvalida(String nome, double preco) throws Exception {
 		if(nome == null || nome.trim().equals("")){

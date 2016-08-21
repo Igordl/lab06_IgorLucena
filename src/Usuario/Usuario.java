@@ -5,15 +5,15 @@ import java.util.HashSet;
 import Jogo.FactoryJogos;
 import Jogo.Jogo;
 
-
 public abstract class Usuario {
+	protected final String FIM_DE_LINHA = System.lineSeparator();
 	protected String nome;
 	protected String login;
 	protected double dinheiro;
 	protected int x2p;
+	protected String tipo = null;
 	protected HashSet<Jogo> jogos;
 	protected FactoryJogos factoryJogos;
-	
 
 	public Usuario(String nome, String login) throws Exception {
 		verificaNomeInvalido(nome, login);
@@ -21,7 +21,7 @@ public abstract class Usuario {
 		this.login = login;
 		this.jogos = new HashSet<>();
 		this.factoryJogos = new FactoryJogos();
-		
+
 	}
 
 	public void registraJogada(String nomeJogo, int scoreJogada, boolean zerou) {
@@ -76,6 +76,53 @@ public abstract class Usuario {
 
 	public HashSet<Jogo> getJogos() {
 		return jogos;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object objeto) {
+		if (objeto instanceof Usuario) {
+			Usuario outroObjeto = (Usuario) objeto;
+			if (outroObjeto.getLogin().equalsIgnoreCase(login)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public String toString() {
+		String retorno = getLogin() + FIM_DE_LINHA + getNome() + " - Jogador" + getTipo() + FIM_DE_LINHA
+				+ "Lista de Jogos:";
+		double valorTotal = 0.0;
+		for (Jogo jogo : jogos) {
+			retorno += FIM_DE_LINHA + jogo.toString();
+			valorTotal += jogo.getPreco();
+		}
+		retorno += FIM_DE_LINHA + "Total de jogos: R$ " + valorTotal;
+		return retorno;
 	}
 
 	private void verificaNomeInvalido(String nome, String login) throws Exception {

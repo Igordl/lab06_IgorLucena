@@ -139,6 +139,9 @@ public class TesteJogo {
 		LOL.addJogabilidade(Jogabilidade.ONLINE);
 
 		assertEquals(2, LOL.getJogabilidade().size());
+		
+		assertTrue(LOL.getJogabilidade().contains(Jogabilidade.ONLINE));
+		assertTrue(LOL.getJogabilidade().contains(Jogabilidade.COOPERATIVO)); 
 
 	}
 }

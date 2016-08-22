@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import Jogo.Jogabilidade;
 import Jogo.Jogo;
 import Jogo.Luta;
 import Jogo.Plataforma;
@@ -124,6 +125,20 @@ public class TesteJogo {
 		} catch (Exception e) {
 			assertEquals("Preco nao pode ser negativo.", e.getMessage());
 		}
+
+	}
+
+	@Test
+	public void testAddJogabilidade() {
+		
+		LOL.addJogabilidade(Jogabilidade.ONLINE);
+		LOL.addJogabilidade(Jogabilidade.COOPERATIVO);
+
+		assertEquals(2, LOL.getJogabilidade().size());
+
+		LOL.addJogabilidade(Jogabilidade.ONLINE);
+
+		assertEquals(2, LOL.getJogabilidade().size());
 
 	}
 }

@@ -17,7 +17,7 @@ public class Fachada {
 		factoryUsuario = new FactoryUsuario();
 	}
 
-	public boolean vendeJogo(String login, Jogo jogo) {
+	public boolean vendeJogo(String login, Jogo jogo) throws Exception {
 		for (Usuario usuario : usuarios) {
 			if (usuario.getLogin().equalsIgnoreCase(login)) {
 				usuario.addJogo(jogo);

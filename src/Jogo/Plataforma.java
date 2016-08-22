@@ -12,12 +12,12 @@ public class Plataforma extends Jogo {
 	public int registraJogada(int scoreJogada, boolean zerou) {
 		int x2pJogada = 20;
 		int JogadaSemX2p = 0;
-		setQntJogadas();
+		addJogada();
 		if (scoreJogada > this.getMaxScore()) {
 			setMaxScore(scoreJogada);
 		}
 		if (zerou) {
-			setQntZeradas();
+			addZerou();
 			return x2pJogada;
 		}
 		return JogadaSemX2p;

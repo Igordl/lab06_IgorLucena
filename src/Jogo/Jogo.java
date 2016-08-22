@@ -61,7 +61,7 @@ public abstract class Jogo {
 		return qntJogadas;
 	}
 
-	public void setQntJogadas() {
+	public void addJogada() {
 		int jogada = 1;
 		this.qntJogadas += jogada;
 	}
@@ -70,7 +70,7 @@ public abstract class Jogo {
 		return qntZeradas;
 	}
 
-	public void setQntZeradas() {
+	public void addZerou() {
 		int zerou = 1;
 		this.qntZeradas += zerou;
 	}
@@ -96,12 +96,13 @@ public abstract class Jogo {
 	}
 
 	public String toString(){
-		String retorno = "+ " + getNome() +" - "+ getTipo();
-		retorno += FIM_DE_LINHA + "==> Jogou "+ getQntJogadas() + "vez(es)";
-		retorno += FIM_DE_LINHA + "==> Zerou "+ getQntZeradas() + "vez(es)";
+		String retorno = "+ " + getNome() +" - "+ getTipo() + ":";
+		retorno += FIM_DE_LINHA + "==> Jogou "+ getQntJogadas() + " vez(es)";
+		retorno += FIM_DE_LINHA + "==> Zerou "+ getQntZeradas() + " vez(es)";
 		retorno += FIM_DE_LINHA + "==> Maior score: " + getMaxScore();
 		return retorno;
 	}
+	
 	
 	@Override
 	public int hashCode() {
@@ -129,10 +130,10 @@ public abstract class Jogo {
 
 	private void verificaCricaoInvalida(String nome, double preco) throws Exception {
 		if(nome == null || nome.trim().equals("")){
-			throw new Exception("Nome nao pode ser nulo ou vazio");
+			throw new Exception("Nome nao pode ser nulo ou vazio.");
 		}
 		if(preco < 0){
-			throw new Exception("Preco nao pode ser negativo");
+			throw new Exception("Preco nao pode ser negativo.");
 		}
 	}
 }

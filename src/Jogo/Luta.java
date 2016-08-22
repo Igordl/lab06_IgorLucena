@@ -14,12 +14,12 @@ public class Luta extends Jogo {
 			scoreJogada = 100000;
 		}
 		int taxaX2pJogada = 1000;
-		setQntJogadas();
+		addJogada();
 		if (scoreJogada > this.getMaxScore()) {
 			setMaxScore(scoreJogada);
 		}
 		if (zerou) {
-			setQntZeradas();
+			addZerou();
 		}
 		return (scoreJogada / taxaX2pJogada);
 	}

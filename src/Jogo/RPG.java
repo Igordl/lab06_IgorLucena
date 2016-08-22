@@ -9,12 +9,12 @@ public class RPG extends Jogo {
 	}
 	public int registraJogada(int scoreJogada, boolean zerou){
 		int x2pJogada = 10;
-		setQntJogadas();
+		addJogada();
 		if(scoreJogada > this.getMaxScore()){
 			setMaxScore(scoreJogada);
 		}
 		if(zerou){
-			setQntZeradas();
+			addZerou();
 		}
 		return x2pJogada;
 	}

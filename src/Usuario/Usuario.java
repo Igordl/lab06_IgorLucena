@@ -24,14 +24,16 @@ public abstract class Usuario {
 
 	}
 
-	public void registraJogada(String nomeJogo, int scoreJogada, boolean zerou) {
+	public boolean registraJogada(String nomeJogo, int scoreJogada, boolean zerou) {
 		for (Jogo jogo : jogos) {
 			if (nomeJogo.equalsIgnoreCase(jogo.getNome())) {
 				int x2pJogada = jogo.registraJogada(scoreJogada, zerou);
 				addX2p(x2pJogada);
+				return true;
 
 			}
 		}
+		return false;
 	}
 
 	public abstract boolean addJogo(Jogo jogo);
@@ -62,11 +64,17 @@ public abstract class Usuario {
 		this.x2p += x2p;
 	}
 
-	public void compraJogo(double precoJogo) {
+	public void compraJogo(double precoJogo) throws Exception {
+		if(precoJogo < 0){
+			throw new Exception("Nao eh possivel valor negativo");
+		}
 		this.dinheiro -= precoJogo;
 	}
 
-	public void addDinheiro(double valor) {
+	public void addDinheiro(double valor) throws Exception {
+		if(valor < 0){
+			throw new Exception("Nao eh possivel valor negativo");
+		}
 		this.dinheiro += valor;
 	}
 
@@ -92,6 +100,18 @@ public abstract class Usuario {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public int getX2p() {
+		return x2p;
+	}
+
+	public void setX2p(int x2p) {
+		this.x2p = x2p;
+	}
+
+	public void setJogos(HashSet<Jogo> jogos) {
+		this.jogos = jogos;
 	}
 
 	@Override

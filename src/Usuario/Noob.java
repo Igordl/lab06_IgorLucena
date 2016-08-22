@@ -14,12 +14,14 @@ public class Noob extends Usuario {
 	public boolean addJogo(Jogo jogo) {
 
 		if (!jogos.contains(jogo)) {
-			double taxaDescontoNoob = -0.1;
-			double desconto = jogo.getPreco() * taxaDescontoNoob;
-			setDinheiro(jogo.getPreco() + desconto);
-			jogos.add(jogo);
-			adicionaX2p(jogo.getPreco());
-			return true;
+			if (getDinheiro() >= jogo.getPreco()) {
+				double taxaDescontoNoob = -0.1;
+				double desconto = jogo.getPreco() * taxaDescontoNoob;
+				setDinheiro(jogo.getPreco() + desconto);
+				jogos.add(jogo);
+				adicionaX2p(jogo.getPreco());
+				return true;
+			}
 		}
 		return false;
 	}

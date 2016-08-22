@@ -14,12 +14,14 @@ public class Veterano extends Usuario {
 	public boolean addJogo(Jogo jogo) {
 
 		if (!jogos.contains(jogo)) {
-			double taxaDescontoVeterano = -0.2;
-			double desconto = jogo.getPreco() * taxaDescontoVeterano;
-			setDinheiro(jogo.getPreco() + desconto);
-			jogos.add(jogo);
-			adicionaX2p(jogo.getPreco());
-			return true;
+			if (getDinheiro() >= jogo.getPreco()) {
+				double taxaDescontoVeterano = -0.2;
+				double desconto = jogo.getPreco() * taxaDescontoVeterano;
+				setDinheiro(jogo.getPreco() + desconto);
+				jogos.add(jogo);
+				adicionaX2p(jogo.getPreco());
+				return true;
+			}
 		}
 		return false;
 	}

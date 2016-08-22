@@ -11,17 +11,19 @@ public class Noob extends Usuario {
 
 	}
 
-	public boolean addJogo(Jogo jogo) {
+	public boolean addJogo(Jogo jogo) throws Exception {
 
 		if (!jogos.contains(jogo)) {
-			if (getDinheiro() >= jogo.getPreco()) {
-				double taxaDescontoNoob = -0.1;
-				double desconto = jogo.getPreco() * taxaDescontoNoob;
-				setDinheiro(jogo.getPreco() + desconto);
+			double taxaDescontoNoob = -0.1;
+			double desconto = jogo.getPreco() * taxaDescontoNoob;
+			double valorJogo = jogo.getPreco() + desconto;
+			if (getDinheiro() >= valorJogo) {
+				compraJogo(valorJogo);
 				jogos.add(jogo);
 				adicionaX2p(jogo.getPreco());
 				return true;
 			}
+			return false;
 		}
 		return false;
 	}
@@ -30,10 +32,11 @@ public class Noob extends Usuario {
 
 		Jogo jogo = factoryJogos.factoryJogo(nome, preco, tipo);
 		if (!jogos.contains(jogo)) {
-			if (getDinheiro() >= jogo.getPreco()) {
-				double taxaDescontoNoob = -0.1;
-				double desconto = jogo.getPreco() * taxaDescontoNoob;
-				compraJogo(jogo.getPreco() + desconto);
+			double taxaDescontoNoob = -0.1;
+			double desconto = jogo.getPreco() * taxaDescontoNoob;
+			double valorJogo = jogo.getPreco() + desconto;
+			if (getDinheiro() >= valorJogo) {
+				compraJogo(valorJogo);
 				jogos.add(jogo);
 				adicionaX2p(jogo.getPreco());
 				return true;
@@ -45,7 +48,7 @@ public class Noob extends Usuario {
 
 	public void adicionaX2p(double precoJogo) {
 		int x2pNoob = 10;
-		x2p += ((int) precoJogo) * x2pNoob;
-		// double temp = precoJogo - (precoJogo % 1);
+		this.x2p += ((int) precoJogo) * x2pNoob;
+		
 	}
 }

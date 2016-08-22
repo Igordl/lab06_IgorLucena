@@ -36,7 +36,7 @@ public abstract class Usuario {
 		return false;
 	}
 
-	public abstract boolean addJogo(Jogo jogo);
+	public abstract boolean addJogo(Jogo jogo) throws Exception;
 
 	public abstract boolean addJogo(String nome, double preco, String tipo) throws Exception;
 

@@ -42,60 +42,6 @@ public class TesteJogo {
 		assertEquals(2, LOL.getQntJogadas());
 
 	}
-	
-
-	@Test
-	public void TestJogoExceptions() {
-		try {
-			Jogo jogoRpg = new RPG(" ", 10.0);
-			
-			fail("Exception nome invalido");
-		} catch (Exception e) {
-			assertEquals("Nome nao pode ser nulo ou vazio.", e.getMessage());
-		}
-		
-		try {
-			Jogo jogoRpg = new RPG("LoL", -10.0);
-			
-			fail("Exception preco invalido");
-		} catch (Exception e) {
-			assertEquals("Preco nao pode ser negativo.", e.getMessage());
-		}
-		
-		try {
-			Jogo jogoPlataforma = new Plataforma(" ", 25.0);
-			
-			fail("Exception nome invalido");
-		} catch (Exception e) {
-			assertEquals("Nome nao pode ser nulo ou vazio.", e.getMessage());
-		}
-		
-		try {
-			Jogo jogoPlataforma = new Plataforma("Mario", -5.99);
-			
-			fail("Exception preco invalido");
-			
-		} catch (Exception e) {
-			assertEquals("Preco nao pode ser negativo.", e.getMessage());
-		}
-		try {
-			Jogo jogoLuta = new RPG(" ", 19.0);
-			
-			fail("Exception nome invalido");
-		} catch (Exception e) {
-			assertEquals("Nome nao pode ser nulo ou vazio.", e.getMessage());
-		}
-		
-		try {
-			Jogo jogoLuta = new Luta("Street Fighter", -15.99);
-			
-			fail("Exception preco invalido");
-		} catch (Exception e) {
-			assertEquals("Preco nao pode ser negativo.", e.getMessage());
-		}
-		
-
-	}
 
 	@Test
 	public void TestJogoPlataforma() {
@@ -129,4 +75,55 @@ public class TesteJogo {
 		assertEquals(2, GTAV.getQntJogadas());
 	}
 
+	@Test
+	public void TestJogoExceptions() {
+		try {
+			Jogo jogoRpg = new RPG(" ", 10.0);
+
+			fail("Exception nome invalido");
+		} catch (Exception e) {
+			assertEquals("Nome nao pode ser nulo ou vazio.", e.getMessage());
+		}
+
+		try {
+			Jogo jogoRpg = new RPG("LoL", -10.0);
+
+			fail("Exception preco invalido");
+		} catch (Exception e) {
+			assertEquals("Preco nao pode ser negativo.", e.getMessage());
+		}
+
+		try {
+			Jogo jogoPlataforma = new Plataforma(" ", 25.0);
+
+			fail("Exception nome invalido");
+		} catch (Exception e) {
+			assertEquals("Nome nao pode ser nulo ou vazio.", e.getMessage());
+		}
+
+		try {
+			Jogo jogoPlataforma = new Plataforma("Mario", -5.99);
+
+			fail("Exception preco invalido");
+
+		} catch (Exception e) {
+			assertEquals("Preco nao pode ser negativo.", e.getMessage());
+		}
+		try {
+			Jogo jogoLuta = new RPG(" ", 19.0);
+
+			fail("Exception nome invalido");
+		} catch (Exception e) {
+			assertEquals("Nome nao pode ser nulo ou vazio.", e.getMessage());
+		}
+
+		try {
+			Jogo jogoLuta = new Luta("Street Fighter", -15.99);
+
+			fail("Exception preco invalido");
+		} catch (Exception e) {
+			assertEquals("Preco nao pode ser negativo.", e.getMessage());
+		}
+
+	}
 }

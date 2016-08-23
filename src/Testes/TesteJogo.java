@@ -73,6 +73,7 @@ public class TesteJogo {
 		assertEquals(43598, GTAV.getMaxScore());
 		assertEquals(1, GTAV.getQntZeradas());
 		assertEquals(2, GTAV.getQntJogadas());
+		
 	}
 
 	@Test

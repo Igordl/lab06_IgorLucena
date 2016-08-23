@@ -26,6 +26,7 @@ public abstract class Jogo {
 	
 	public void addJogabilidade(Jogabilidade tipoJogabiliade){
 		jogabilidade.add(tipoJogabiliade);
+		
 	}
 	
 	public void removeJogabilidade(Jogabilidade tipoJogabiliade){

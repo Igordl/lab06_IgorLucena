@@ -1,11 +1,11 @@
-package Loja;
+package loja;
 
 import java.util.HashSet;
 
-import Jogo.Jogo;
-import Usuario.FactoryUsuario;
-import Usuario.Noob;
-import Usuario.Usuario;
+import jogo.Jogo;
+import usuario.FactoryUsuario;
+import usuario.Noob;
+import usuario.Usuario;
 
 public class Fachada {
 	protected final String FIM_DE_LINHA = System.lineSeparator();

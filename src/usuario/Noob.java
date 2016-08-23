@@ -1,37 +1,39 @@
-package Usuario;
+package usuario;
 
-import Jogo.Jogo;
+import jogo.Jogo;
 
-public class Veterano extends Usuario {
+public class Noob extends Usuario {
 
-	public Veterano(String nome, String login) throws Exception {
+	public Noob(String nome, String login) throws Exception {
 		super(nome, login);
-		super.tipo = "Veterano";
-		super.x2p = 1000;
+		super.tipo = "Noob";
+		super.x2p = 0;
 
 	}
 
 	public boolean addJogo(Jogo jogo) throws Exception {
 
 		if (!jogos.contains(jogo)) {
-			if (getDinheiro() >= jogo.getPreco()) {
-				double taxaDescontoVeterano = -0.2;
-				double desconto = jogo.getPreco() * taxaDescontoVeterano;
-				compraJogo(jogo.getPreco() + desconto);
+			double taxaDescontoNoob = -0.1;
+			double desconto = jogo.getPreco() * taxaDescontoNoob;
+			double valorJogo = jogo.getPreco() + desconto;
+			if (getDinheiro() >= valorJogo) {
+				compraJogo(valorJogo);
 				jogos.add(jogo);
 				adicionaX2p(jogo.getPreco());
 				return true;
 			}
+			return false;
 		}
 		return false;
 	}
 
 	public boolean addJogo(String nome, double preco, String tipo) throws Exception {
-		
+
 		Jogo jogo = factoryJogos.factoryJogo(nome, preco, tipo);
 		if (!jogos.contains(jogo)) {
-			double taxaDescontoVeterano = -0.2;
-			double desconto = jogo.getPreco() * taxaDescontoVeterano;
+			double taxaDescontoNoob = -0.1;
+			double desconto = jogo.getPreco() * taxaDescontoNoob;
 			double valorJogo = jogo.getPreco() + desconto;
 			if (getDinheiro() >= valorJogo) {
 				compraJogo(valorJogo);
@@ -45,8 +47,8 @@ public class Veterano extends Usuario {
 	}
 
 	public void adicionaX2p(double precoJogo) {
-		int x2pVeterano = 15;
-		x2p += ((int) precoJogo) * x2pVeterano;
+		int x2pNoob = 10;
+		this.x2p += ((int) precoJogo) * x2pNoob;
+		
 	}
-
 }

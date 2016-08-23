@@ -1,4 +1,4 @@
-package Testes;
+package test;
 
 import static org.junit.Assert.*;
 
@@ -8,11 +8,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import Jogo.Jogabilidade;
-import Jogo.Jogo;
-import Jogo.Luta;
-import Jogo.Plataforma;
-import Jogo.RPG;
+import jogo.Jogabilidade;
+import jogo.Jogo;
+import jogo.Luta;
+import jogo.Plataforma;
+import jogo.RPG;
 
 public class TesteJogo {
 

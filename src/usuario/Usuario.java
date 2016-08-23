@@ -1,9 +1,10 @@
-package Usuario;
+package usuario;
 
 import java.util.HashSet;
+import java.util.Set;
 
-import Jogo.FactoryJogos;
-import Jogo.Jogo;
+import jogo.FactoryJogos;
+import jogo.Jogo;
 
 public abstract class Usuario {
 	protected final String FIM_DE_LINHA = System.lineSeparator();
@@ -12,14 +13,14 @@ public abstract class Usuario {
 	protected double dinheiro;
 	protected int x2p;
 	protected String tipo = null;
-	protected HashSet<Jogo> jogos;
+	protected Set<Jogo> jogos;
 	protected FactoryJogos factoryJogos;
 
 	public Usuario(String nome, String login) throws Exception {
 		verificaNomeInvalido(nome, login);
 		this.nome = nome;
 		this.login = login;
-		this.jogos = new HashSet<>();
+		this.jogos = new HashSet<Jogo>();
 		this.factoryJogos = new FactoryJogos();
 
 	}
@@ -41,7 +42,7 @@ public abstract class Usuario {
 	public abstract boolean addJogo(String nome, double preco, String tipo) throws Exception;
 
 	public boolean removeJogo(Jogo jogo) {
-		if (!jogos.contains(jogo)) {
+		if (jogos.contains(jogo)) {
 			jogos.remove(jogo);
 			return true;
 		}
@@ -83,7 +84,7 @@ public abstract class Usuario {
 	}
 
 	public HashSet<Jogo> getJogos() {
-		return jogos;
+		return (HashSet<Jogo>) jogos;
 	}
 
 	public String getLogin() {

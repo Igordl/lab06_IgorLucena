@@ -17,15 +17,25 @@ public class Fachada {
 		factoryUsuario = new FactoryUsuario();
 	}
 
-	public boolean vendeJogo(String login, Jogo jogo) {
+	public boolean vendeJogo(String login, Jogo jogo) throws Exception {
 		for (Usuario usuario : usuarios) {
 			if (usuario.getLogin().equalsIgnoreCase(login)) {
-				usuario.addJogo(jogo);
-				return true;
+				if (usuario.addJogo(jogo)) {
+					return true;
+				}
 			}
 		}
 		return false;
 	}
+	public int qntJogosUsuario(String login) throws Exception {
+		for (Usuario usuario : usuarios) {
+			if (usuario.getLogin().equalsIgnoreCase(login)) {
+				return usuario.getJogos().size();
+			}
+		}
+		return 0;
+	}
+	
 
 	public boolean addUsuario(Usuario usuario) {
 		if (!usuarios.contains(usuario)) {
@@ -52,22 +62,26 @@ public class Fachada {
 		}
 		return false;
 	}
-	public boolean removeUsuario(String login){
+
+	public boolean removeUsuario(String login) {
 		for (Usuario usuario : usuarios) {
-			if(usuario.getLogin().equalsIgnoreCase(login)){
+			if (usuario.getLogin().equalsIgnoreCase(login)) {
 				usuarios.remove(usuario);
 				return true;
 			}
 		}
 		return false;
 	}
+	
 
-	public void addDinheiro(String login, double valor) throws Exception {
+	public boolean addDinheiro(String login, double valor) throws Exception {
 		for (Usuario usuario : usuarios) {
 			if (usuario.getLogin().equalsIgnoreCase(login)) {
 				usuario.addDinheiro(valor);
+				return true;
 			}
 		}
+		return false;
 	}
 
 	public boolean upgrade(String login) throws Exception {
@@ -91,6 +105,14 @@ public class Fachada {
 			}
 		}
 		return false;
+	}
+
+	public HashSet<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(HashSet<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
 	public String toString() {

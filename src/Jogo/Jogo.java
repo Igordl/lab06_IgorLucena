@@ -3,6 +3,8 @@ package Jogo;
 
 import java.util.HashSet;
 
+
+
 public abstract class Jogo {
 	private final String FIM_DE_LINHA = System.lineSeparator();
 	protected String nome;
